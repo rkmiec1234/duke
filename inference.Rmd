@@ -1,0 +1,69 @@
+---
+title: "Duke Inference"
+author: "Richard Kmieciak"
+date: "May 30, 2015"
+output: html_document
+---
+```{r, message=FALSE, warning=FALSE}
+load(url("http://s3.amazonaws.com/assets.datacamp.com/course/dasi/inference.Rdata"))
+library(openintro);library(dplyr);
+```
+
+#Single Mean Estimate  Hypothesis Test
+```{r}
+a <- rnorm(15, mean = 13, sd = 3)
+inference(a,est = "mean", type = "ht", method = "theoretical", null = 15, alternative = "twosided" )
+```
+
+#Single Median Estimate Hypothesis Test
+```{r}
+a <- rnorm(15, mean = 14, sd = 3)
+inference(a,est = "median", type = "ht", method = "simulation", null = 15, alternative = "twosided" )
+```
+
+#Single Mean Estimate  Confidence Interval
+```{r}
+a <- rnorm(15, mean = 13, sd = 3)
+inference(a,est = "mean", type = "ci", method = "theoretical", boot_method = "se", conflevel = .95 )
+```
+
+#Single Median Estimate Confidence Interval
+```{r}
+a <- rnorm(15, mean = 14, sd = 3)
+inference(a,est = "median", type = "ci", method = "simulation", boot_method = "perc", conflevel = .95 )
+```
+
+
+#Two Mean Estimate  Hypothesis Test
+```{r}
+df <- iris %>% mutate (isSetosa = ifelse(Species == "setosa","yes", "no"))
+inference(y = df$Petal.Width,x = df$isSetosa, est = "mean", type = "ht",  method = "theoretical", null = 0,  alternative = "twosided" )
+```
+
+#Two Median Estimate  Hypothesis Test
+```{r}
+df <- iris %>% mutate (isSetosa = ifelse(Species == "setosa","yes", "no"))
+inference(y = df$Sepal.Length,x = df$isSetosa, est = "median", type = "ht",  method = "simulation", null = 0,  alternative = "twosided" )
+```
+
+#Two Mean Estimate  Confidence Interval
+```{r}
+df <- iris %>% mutate (isSetosa = ifelse(Species == "setosa","yes", "no"))
+inference(y = df$Petal.Width,x = df$isSetosa, est = "mean", type = "ci",  method = "theoretical", conflevel = .95)
+```
+
+#Two Median Estimate  Confidence Interval
+```{r}
+df <- iris %>% mutate (isSetosa = ifelse(Species == "setosa","yes", "no"))
+inference(y = df$Sepal.Length,x = df$isSetosa, est = "median", type = "ci",  method = "simulation", boot_method = "perc")
+```
+
+
+
+#Anova 
+```{r}
+inference(y = df$Petal.Width,x = iris$Species, est = "mean", type = "ht",  method = "theoretical", alternative = "greater")
+```
+
+
+
