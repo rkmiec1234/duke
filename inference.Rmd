@@ -12,13 +12,13 @@ library(openintro);library(dplyr);
 #Single Mean Estimate  Hypothesis Test
 ```{r}
 a <- rnorm(15, mean = 13, sd = 3)
-inference(a,est = "mean", type = "ht", method = "theoretical", null = 15, alternative = "twosided" )
+inference(a,est = "mean", type = "ht", method = "theoretical", null = 15, alternative = "twosided",conflevel = .95)
 ```
 
 #Single Median Estimate Hypothesis Test
 ```{r}
 a <- rnorm(15, mean = 14, sd = 3)
-inference(a,est = "median", type = "ht", method = "simulation", null = 15, alternative = "twosided" )
+inference(a,est = "median", type = "ht", method = "simulation", null = 15, alternative = "twosided", conflevel = .95 )
 ```
 
 #Single Mean Estimate  Confidence Interval
