@@ -59,11 +59,12 @@ inference(y = df$Sepal.Length,x = df$isSetosa, est = "median", type = "ci",  met
 ```
 
 
-
-#Anova 
+#Anova Mean differ across categorical groups? Hypothesis test.
 ```{r}
-inference(y = df$Petal.Width,x = iris$Species, est = "mean", type = "ht",  method = "theoretical", alternative = "greater")
+df <- mtcars %>% mutate (cyl = factor(cyl))
+inference(y = df$mpg,x = df$cyl, est = "mean", type = "ht",  method = "theoretical", alternative = "greater")
 ```
+
 
 
 
